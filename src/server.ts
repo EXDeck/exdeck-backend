@@ -110,5 +110,5 @@ router
 
 //Finish initializing the server
 app.use(router.routes())
-app.listen(config.PORT)        //TODO: use env
+app.listen(config.PORT)
 console.log("server is up!")
