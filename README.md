@@ -6,8 +6,8 @@
 
 ## 関連リポジトリ
 
-- フロントエンド [birdseye-frontend](https://github.com/MarinDeck/birdseye-frontend)
-- バックエンド [birdseye-backend](https://github.com/MarinDeck/birdseye-backend) (このリポジトリ)
+- フロントエンド [exdeck-frontend](https://github.com/EXDeck/exdeck-frontend)
+- バックエンド [exdeck-backend](https://github.com/EXDeck/exdeck-backend) (このリポジトリ)
 
 ## 必要要件
 
