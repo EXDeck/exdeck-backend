@@ -20,8 +20,8 @@
 以下のコマンドを実行します。
 
 ```sh
-git clone https://github.com/MarinDeck/birdseye-backend.git
-cd birdseye-backend
+git clone https://github.com/EXDeck/exdeck-backend.git
+cd exdeck-backend
 yarn install
 ```
 
@@ -53,6 +53,6 @@ yarn build
 
 ## ライセンス
 
-Copyright (c) 2022 EXDeck <https://github.com/MarinDeck>
+Copyright (c) 2022 EXDeck <https://github.com/EXDeck>
 
 このソフトウェアは、[MIT License](./LICENSE)に基づき配布しています。
