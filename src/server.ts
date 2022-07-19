@@ -113,6 +113,12 @@ router
         const resp = await twitter.get(url);
         ctx.body = await resp.json()
     })
+    .post("/1.1/:path(.+)", async(ctx, next) => {
+        const url = "https://api.twitter.com/1.1/" + ctx.params.path
+        const twitter = new Twitter(ctx)
+        const resp = await twitter.post(url, ctx.request.body)
+        ctx.body = await resp.json()
+    })
 
 
 //Finish initializing the server
