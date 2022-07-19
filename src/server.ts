@@ -55,7 +55,7 @@ router
                 oauth_token_secret: oauth_token_secret
             }
         }
-    })
+    }) //ずらす
     .post("/api/auth", async(ctx, next) => {
         const body = ctx.request.body
         const oauth_token = body.oauth_token;
@@ -105,6 +105,13 @@ router
             ctx.cookies.set("accounts", JSON.stringify({[user_id]: account}), {httpOnly: true})
         }
         ctx.body = "ok"
+    }) //ずらす
+    .get("/1.1/:path(.+)", async(ctx, next) => {
+        // ctx.body = ctx.params.path
+        const url = "https://api.twitter.com/1.1/" + ctx.params.path + "?" + ctx.request.querystring
+        const twitter = new Twitter(ctx)
+        const resp = await twitter.get(url);
+        ctx.body = await resp.json()
     })
 
 
