@@ -97,11 +97,15 @@ export class Twitter {
 
     async makeRequest(req: RequestOptions): Promise<Response> {
         const header = this.generateHeaders(req);
-        const resp  = fetch(req.url, {
+        const data = req.data ? {
+            method: req.method,
+            headers: header,
+        } : {
             method: req.method,
             headers: header,
             body: req.data
-        })
+        }
+        const resp  = fetch(req.url, data)
         return resp;
     }
 
