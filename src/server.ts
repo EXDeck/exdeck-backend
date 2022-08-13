@@ -100,9 +100,9 @@ router
         if(accounts_cookie){
             const accounts = JSON.parse(accounts_cookie)
             accounts[user_id] = account
-            ctx.cookies.set("accounts", JSON.stringify(accounts), {httpOnly: true})                 //TODO: 期限を設定する
+            ctx.cookies.set("accounts", JSON.stringify(accounts), config.COOKIE)                 //TODO: 期限を設定する
         }else{
-            ctx.cookies.set("accounts", JSON.stringify({[user_id]: account}), {httpOnly: true})
+            ctx.cookies.set("accounts", JSON.stringify({[user_id]: account}), config.COOKIE)
         }
         ctx.body = "ok"
     }) //ずらす
