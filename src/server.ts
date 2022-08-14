@@ -1,6 +1,7 @@
 import Koa from "koa"
 import koaBody from "koa-body"
 import Router from "@koa/router"
+import cors from "@koa/cors"
 import {Twitter} from "./twitter"
 import config from "./env"
 
@@ -123,5 +124,11 @@ router
 
 //Finish initializing the server
 app.use(router.routes())
+app.use(cors(
+    {
+        origin: config.ORIGIN,
+        credentials: true,
+    }
+))
 app.listen(config.PORT)
 console.log("server is up!")

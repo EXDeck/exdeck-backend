@@ -6,6 +6,7 @@ export default {
     CK: process.env.CK,
     CS: process.env.CS,
     PORT: process.env.PORT ?? 3000,
+    ORIGIN: (process.env.ORIGIN ?? "https://localhost:3000") as string,
     COOKIE: { //このオブジェクトはcookeisのオプションにそのまま突っ込めるようになってる
         httpOnly: process.env.C_HTTPONLY == undefined ? true : Boolean(process.env.C_HTTPONLY),
         secure: process.env.C_SECURE == undefined ? true : Boolean(process.env.C_SECURE),
