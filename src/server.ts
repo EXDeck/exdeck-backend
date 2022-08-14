@@ -13,6 +13,12 @@ const app = new Koa()
 const router = new Router()
 
 app.use(koaBody())
+app.use(cors(
+    {
+        origin: config.ORIGIN,
+        credentials: true,
+    }
+))
 
 // Loads from .env OR environment vars
 const CK = config.CK
@@ -86,12 +92,12 @@ router
         const ck = ctx.request.headers["x-consumer-key"] as string || null;
         const cs = ctx.request.headers["x-consumer-secret"] as string || null;
 
-        const account: {access_token: string, access_token_secret: string, consumer_key?: string, consumer_secret?: string} 
+        const account: {access_token: string, access_token_secret: string, consumer_key?: string, consumer_secret?: string}
             = {
                 access_token: access_token,
                 access_token_secret: access_token_secret,
             }
-        
+
         if(ck && cs){
             account.consumer_key = ck;
             account.consumer_secret = cs;
@@ -124,11 +130,5 @@ router
 
 //Finish initializing the server
 app.use(router.routes())
-app.use(cors(
-    {
-        origin: config.ORIGIN,
-        credentials: true,
-    }
-))
 app.listen(config.PORT)
 console.log("server is up!")
