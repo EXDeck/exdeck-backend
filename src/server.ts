@@ -64,7 +64,7 @@ router
         }
     }) //ずらす
     .post("/api/auth", async(ctx, next) => {
-        const body = ctx.request.body
+        const body = JSON.parse(ctx.request.body)
         const oauth_token = body.oauth_token;
         const oauth_verifier = body.oauth_verifier;
         const resp = await fetch(`https://api.twitter.com/oauth/access_token?oauth_token=${oauth_token}&oauth_verifier=${oauth_verifier}`, {method: "POST"});
