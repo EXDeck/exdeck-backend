@@ -17,5 +17,6 @@ export default {
         sameSite: process.env.C_SAMESITE as "strict" | "lax" | "none" ?? "strict",
         domain: process.env.C_DOMAIN,
         maxAge: process.env.C_MAXAGE == undefined ?  60 * 60 * 24 * 365 : Number(process.env.C_MAXAGE),
+        Path: "/"
     }
 }
