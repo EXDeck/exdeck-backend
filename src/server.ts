@@ -29,6 +29,20 @@ router
     .get("/", async (ctx, next) => {
         ctx.body = "Hello World. This is the backend. ";
     })
+
+    // NOTE Cookie受取テスト用エンドポイント
+    .get("/api/cookie", async(ctx) => {
+        console.log(ctx.cookies.get("accounts"));
+        ctx.response.status = 200;
+        ctx.response.body = "ok";
+    })
+    .post("/api/cookie", async(ctx) => {
+        console.log(ctx.cookies.get("accounts"));
+        ctx.response.status = 200;
+        ctx.response.body = "ok";
+    })
+    // NOTE End Cookie受取テスト用エンドポイント
+
     .get("/api/auth", async (ctx, next) => {
         const twitter = new Twitter(ctx);
         const resp = await twitter.post("https://api.twitter.com/oauth/request_token", {
