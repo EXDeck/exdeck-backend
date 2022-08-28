@@ -138,12 +138,13 @@ router
 
 //Finish initializing the server
 (async () => {
+    app.use(router.routes());
     if (config.LOCAL_SSL) {
-        const server = https.createServer(await cert, app.callback());
-        server.listen(config.PORT);
+        https.createServer(await cert, app.callback()).listen(config.PORT);
     } else {
-        app.use(router.routes());
         app.listen(config.PORT);
     }
-    console.log(`server is up!: ${config.LOCAL_SSL ? "https" : "http"}://localhost:${config.PORT}/`);
+    console.log(
+        `server is up!: ${config.LOCAL_SSL ? "https" : "http"}://localhost:${config.PORT}/`,
+    );
 })();

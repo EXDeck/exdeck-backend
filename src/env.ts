@@ -6,13 +6,17 @@ function boolean(boolStr: string) {
     return boolStr.toLowerCase() === "true" ? true : false;
 }
 
+console.log(process.env.NODE_ENV);
+
 export default {
     CK: process.env.CK,
     CS: process.env.CS,
     PORT: process.env.PORT ?? 3000,
     ORIGIN: (process.env.ORIGIN ?? "https://localhost:3000") as string,
     LOCAL_SSL:
-        process.env.NODE_ENV !== "development" || process.env.SSL == undefined
+        process.env.NODE_ENV !== "development"
+            ? false
+            : process.env.SSL == undefined
             ? true
             : boolean(process.env.SSL),
     COOKIE: {
