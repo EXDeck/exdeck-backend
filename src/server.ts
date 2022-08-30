@@ -135,6 +135,15 @@ router
         }
         ctx.body = "ok";
     }) //ずらす
+    .get("/api/auth/status", async (ctx, next)=>{
+        const accounts_cookie = ctx.cookies.get("accounts");
+        const res = {
+            status: 200,
+            ok: false
+        }
+        if(accounts_cookie) res.ok = true
+        ctx.body = res
+    })
     .get("/1.1/:path(.+)", async (ctx, next) => {
         // ctx.body = ctx.params.path
         const url =
