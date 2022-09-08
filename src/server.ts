@@ -6,6 +6,7 @@ import { Twitter } from "./twitter";
 import config from "./env";
 import https from "https";
 import { cert } from "./cert";
+import { Account } from "./types/cookie";
 //Init dotenv
 
 //Init server
@@ -31,12 +32,12 @@ router
     })
 
     // NOTE Cookie受取テスト用エンドポイント
-    .get("/api/cookie", async(ctx) => {
+    .get("/api/cookie", async (ctx) => {
         console.log(ctx.cookies.get("accounts"));
         ctx.response.status = 200;
         ctx.response.body = "ok";
     })
-    .post("/api/cookie", async(ctx) => {
+    .post("/api/cookie", async (ctx) => {
         console.log(ctx.cookies.get("accounts"));
         ctx.response.status = 200;
         ctx.response.body = "ok";
@@ -110,12 +111,7 @@ router
         const ck = (ctx.request.headers["x-consumer-key"] as string) || null;
         const cs = (ctx.request.headers["x-consumer-secret"] as string) || null;
 
-        const account: {
-            access_token: string;
-            access_token_secret: string;
-            consumer_key?: string;
-            consumer_secret?: string;
-        } = {
+        const account: Account = {
             access_token: access_token,
             access_token_secret: access_token_secret,
         };
@@ -135,14 +131,22 @@ router
         }
         ctx.body = "ok";
     }) //ずらす
-    .get("/api/auth/status", async (ctx, next)=>{
+    .get("/api/auth/status", async (ctx, next) => {
         const accounts_cookie = ctx.cookies.get("accounts");
         const res = {
-            status: 200,
-            ok: false
+            signIn: false,
+            specialKey: false,
+        };
+        if (accounts_cookie) {
+            res.signIn = true;
+            const url = "https://api.twitter.com/1.1/search/universal.json?q=a";
+            const twitter = new Twitter(ctx);
+            const resp = await twitter.get(url);
+            // console.log(await resp.json());
+
+            if (resp.ok) res.specialKey = true;
         }
-        if(accounts_cookie) res.ok = true
-        ctx.body = res
+        ctx.body = res;
     })
     .get("/1.1/:path(.+)", async (ctx, next) => {
         // ctx.body = ctx.params.path
