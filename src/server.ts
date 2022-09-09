@@ -7,6 +7,7 @@ import config from "./env";
 import https from "https";
 import { cert } from "./cert";
 import { Account } from "./types/cookie";
+import { randomUUID } from "crypto";
 //Init dotenv
 
 //Init server
@@ -139,7 +140,8 @@ router
         };
         if (accounts_cookie) {
             res.signIn = true;
-            const url = "https://api.twitter.com/1.1/search/universal.json?q=a";
+            // NOTE 検索でヒットしなさそうな文字列を並べることでレスポンスを向上
+            const url = `https://api.twitter.com/1.1/search/universal.json?q=${randomUUID()+randomUUID()}`;
             const twitter = new Twitter(ctx);
             const resp = await twitter.get(url);
             // console.log(await resp.json());
