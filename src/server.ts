@@ -5,9 +5,10 @@ import cors from "@koa/cors";
 import { Twitter } from "./twitter";
 import config from "./env";
 import https from "https";
-import { cert } from "./cert";
 import { Account } from "./types/cookie";
 import { randomUUID } from "crypto";
+import { readFileSync } from "fs";
+import path from "path";
 //Init dotenv
 
 //Init server
@@ -141,7 +142,9 @@ router
         if (accounts_cookie) {
             res.signIn = true;
             // NOTE 検索でヒットしなさそうな文字列を並べることでレスポンスを向上
-            const url = `https://api.twitter.com/1.1/search/universal.json?q=${randomUUID()+randomUUID()}`;
+            const url = `https://api.twitter.com/1.1/search/universal.json?q=${
+                randomUUID() + randomUUID()
+            }`;
             const twitter = new Twitter(ctx);
             const resp = await twitter.get(url);
             // console.log(await resp.json());
@@ -169,7 +172,15 @@ router
 (async () => {
     app.use(router.routes());
     if (config.LOCAL_SSL) {
-        https.createServer(await cert, app.callback()).listen(config.PORT);
+        https
+            .createServer(
+                {
+                    key: readFileSync(path.join(process.cwd(), "localhost-key.pem")),
+                    cert: readFileSync(path.join(process.cwd(), "localhost.pem")),
+                },
+                app.callback(),
+            )
+            .listen(config.PORT);
     } else {
         app.listen(config.PORT);
     }
