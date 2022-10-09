@@ -13,7 +13,7 @@
 
 - Node.js Version Manager ([fnm](https://fnm.vercel.app/)を推奨)
 - [Node.js](https://nodejs.org/) v18.3.0
-- [Yarn](https://yarnpkg.com/)
+- [pnpm](https://pnpm.io/)
 
 ## インストール
 
@@ -22,7 +22,7 @@
 ```sh
 git clone https://github.com/EXDeck/exdeck-backend.git
 cd exdeck-backend
-yarn install
+pnpm install
 ```
 
 ## 使い方
@@ -32,7 +32,7 @@ yarn install
 以下のコマンドを実行します。
 
 ```sh
-yarn dev
+pnpm dev
 ```
 
 ### サーバーの起動
@@ -40,7 +40,7 @@ yarn dev
 以下のコマンドを実行します。
 
 ```sh
-yarn bs
+pnpm bs
 ```
 
 ### ビルド
@@ -48,7 +48,7 @@ yarn bs
 以下のコマンドを実行します。
 
 ```sh
-yarn build
+pnpm build
 ```
 
 ## ライセンス
