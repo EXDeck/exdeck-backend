@@ -2,6 +2,7 @@ import crypto from "crypto"
 
 import { Context } from "koa"
 import OAuth, { RequestOptions } from "oauth-1.0a"
+import { fetch, Response } from "undici"
 
 export default class Twitter
 {
