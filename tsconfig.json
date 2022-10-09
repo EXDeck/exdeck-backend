@@ -3,12 +3,7 @@
         "target": "ES2022",
         "module": "CommonJS",
         "moduleResolution": "node",
-        "baseUrl": "./src",
-        "paths": {
-            "@/*": [
-                "./*"
-            ]
-        },
+        "baseUrl": ".",
         "outDir": "./built",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,

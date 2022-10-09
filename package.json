@@ -1,7 +1,7 @@
 {
   "name": "exdeck-backend",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "src/server.ts",
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^4.0.0",

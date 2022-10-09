@@ -8,8 +8,9 @@ import Router from "@koa/router"
 import Koa from "koa"
 import koaBody from "koa-body"
 
-import config from "@/env"
-import Twitter from "@/twitter"
+import config from "./env"
+import Twitter from "./twitter"
+import { Account } from "./types/cookie"
 
 // Init dotenv
 
