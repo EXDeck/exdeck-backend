@@ -99,10 +99,9 @@ router
 	.post("/api/auth", async (ctx, next) =>
 	{
 		const body = JSON.parse(ctx.request.body)
-		const { oauthToken } = body
-		const { oauth_verifier } = body
+		const { oauth_token: oauthToken, oauth_verifier: oauthVerifier } = body
 		const resp = await fetch(
-			`https://api.twitter.com/oauth/access_token?oauth_token=${oauthToken}&oauth_verifier=${oauth_verifier}`,
+			`https://api.twitter.com/oauth/access_token?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`,
 			{ method: "POST" },
 		)
 		const tokens = await resp.text()
