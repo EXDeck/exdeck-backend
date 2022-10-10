@@ -12,8 +12,8 @@
 ## 必要要件
 
 - Node.js Version Manager ([fnm](https://fnm.vercel.app/)を推奨)
-- [Node.js](https://nodejs.org/) v18.3.0
-- [Yarn](https://yarnpkg.com/)
+- [Node.js](https://nodejs.org/) LTS
+- [pnpm](https://pnpm.io/)
 
 ## インストール
 
@@ -22,17 +22,39 @@
 ```sh
 git clone https://github.com/EXDeck/exdeck-backend.git
 cd exdeck-backend
-yarn install
+pnpm install
 ```
 
 ## 使い方
+
+`.env`ファイルを作成します。
+`.env`では以下の内容が設定可能です。
+これらのうち`CK`および`CS`は設定が必須です。他の項目は必要に応じて設定してください。
+
+```
+CK=[your twitter API consumer key]
+CS=[your twitter API consumer secret]
+ORIGIN=[frontend origin / defalut: https://localhost:3000]
+PORT=[listening port / defalut: 3000]
+SSL=[using SSL (true/false)]
+C_HTTPONLY=[cookie http only option (true/false)]
+C_SECURE=[cookie secure option (true/false)]
+C_SAMESITE=[cookie samesite option (strict/lax/none) / default: strict]
+C_DOMAIN=[cookie domain option]
+C_MAXAGE=[cookie max age option]
+```
+
+ローカルのSSL証明書を使用する場合は以下の手順で証明書を発行してください。
+
+1. [mkcert](https://github.com/FiloSottile/mkcert)のインストール
+2. `mkcert --install && mkcert localhost`
 
 ### 開発用サーバーの起動
 
 以下のコマンドを実行します。
 
 ```sh
-yarn dev
+pnpm dev
 ```
 
 ### サーバーの起動
@@ -40,7 +62,7 @@ yarn dev
 以下のコマンドを実行します。
 
 ```sh
-yarn bs
+pnpm bs
 ```
 
 ### ビルド
@@ -48,7 +70,7 @@ yarn bs
 以下のコマンドを実行します。
 
 ```sh
-yarn build
+pnpm build
 ```
 
 ## ライセンス
